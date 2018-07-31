@@ -9,7 +9,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
- * As per assigment specifications, class starts with lower case letter. Created 31/07/2018.
+ *  Registration class. Created 31/07/2018.
+ *  As per assigment specifications, class starts with lower case letter.
  *
  * @author Matthew Van der Bijl (xq93wv31)
  */
@@ -22,7 +23,12 @@ public class registerClass {
         new registerClass().studentpresent();
     }
 
-    private boolean validate_login(String username, String password) {
+    /**
+     * @param username username to test
+     * @param passwd   password to test
+     * @return true if user is found
+     */
+    private boolean validate_login(String username, String passwd) {
         boolean isFound = false; // default to false
         try {
             Connection cnctn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ja_assigment"
@@ -30,7 +36,7 @@ public class registerClass {
             Statement stmt = cnctn.createStatement();
 
             String q = String.format("SELECT COUNT(*) as 'is_found' from lecturer " +
-                    "WHERE username = '%s' AND password = '%s'", username, password);
+                    "WHERE username = '%s' AND password = '%s'", username, passwd);
             System.out.println(q); // for debugging
 
             ResultSet rs = stmt.executeQuery(q);
@@ -49,6 +55,9 @@ public class registerClass {
             cnctn.close();
         } catch (Exception ex) {
             ex.printStackTrace(System.err);
+            Toolkit.getDefaultToolkit().beep();
+            JOptionPane.showMessageDialog(null, ex.getMessage(),
+                    ex.getClass().getSimpleName(), JOptionPane.ERROR_MESSAGE);
         }
         return isFound;
     }
@@ -58,10 +67,11 @@ public class registerClass {
      */
     public void studentpresent() {
         Login login = new Login();
-        login.myLogin();
+        login.myLogin(); // show frame
 
-        while (login.isVisible()) ;
+        while (login.isVisible()) ; // wait
 
+        // Get data from login frame
         String username = login.getUsername();
         String password = login.getPassowrd();
 
@@ -72,13 +82,17 @@ public class registerClass {
             return;
         }
 
-        ArrayList<Student> students = new ArrayList<>();
+        ArrayList<Student> students = new ArrayList<>(); // create new array list
 
         int numStudents = 0;
         try {
             numStudents = Integer.parseInt(JOptionPane.showInputDialog("How many students are there?"));
         } catch (NumberFormatException nfe) {
             nfe.printStackTrace(System.err);
+            Toolkit.getDefaultToolkit().beep();
+            JOptionPane.showMessageDialog(null, "Please enter a valid number.",
+                    nfe.getClass().getSimpleName(), JOptionPane.ERROR_MESSAGE);
+            return;
         }
 
         for (int i = 0; i < numStudents; i++) {
@@ -95,18 +109,19 @@ public class registerClass {
             boolean found = false;
             for (Student obj : students) {
                 if (obj.getStudnetNo() == StudnetNo) {
-                    found = true;
+                    found = true; // id found
                     break;
                 }
             }
             if (!found) {
-                students.add(student);
+                students.add(student); // add student to array list
             }
         }
 
         // Output
         JOptionPane.showMessageDialog(null, students.size() + " students have been added.");
 
+        // print out array list
         for (Student student : students) {
             System.out.println(student);
         }
