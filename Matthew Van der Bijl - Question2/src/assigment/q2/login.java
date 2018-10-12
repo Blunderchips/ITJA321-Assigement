@@ -6,19 +6,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Login window manager.  Created 31/07/2018.
+ * Login window manager. As per specifications, class starts 
+ * with a lowercase letter. Created 31/07/2018.
  *
  * @author Matthew Van der Bijl (xq9x3wv31)
  * @see JFrame
  * @see ActionListener
  */
-public class Login implements ActionListener {
+public class login implements ActionListener {
 
     private JFrame window;
     private JTextField txtUsername;
     private JPasswordField txtPassword;
 
-    public Login() {
+    public login() {
 
     }
 
@@ -81,7 +82,7 @@ public class Login implements ActionListener {
     }
 
     public boolean isVisible() {
-        // System.out.println(window.isVisible());
+        System.out.println(window.isVisible());
         return window.isVisible();
     }
 }

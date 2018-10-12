@@ -9,8 +9,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
- *  Registration class. Created 31/07/2018.
- *  As per assignment specifications, class starts with lower case letter.
+ * Registration class. Created 31/07/2018. As per assignment specifications,
+ * class starts with lower case letter.
  *
  * @author Matthew Van der Bijl (xq93wv31)
  */
@@ -25,18 +25,18 @@ public class registerClass {
 
     /**
      * @param username username to test
-     * @param passwd   password to test
+     * @param passwd password to test
      * @return true if user is found
      */
     private boolean validate_login(String username, String passwd) {
         boolean isFound = false; // default to false
         try {
-            Connection cnctn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ja_assigment"
-                    , "root", "");
+            Connection cnctn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ja_assigment",
+                    "root", "");
             Statement stmt = cnctn.createStatement();
 
-            String q = String.format("SELECT COUNT(*) as 'is_found' from lecturer " +
-                    "WHERE username = '%s' AND password = '%s'", username, passwd);
+            String q = String.format("SELECT COUNT(*) as 'is_found' from lecturer "
+                    + "WHERE username = '%s' AND password = '%s'", username, passwd);
             System.out.println(q); // for debugging
 
             ResultSet rs = stmt.executeQuery(q);
@@ -63,10 +63,12 @@ public class registerClass {
     }
 
     /**
-     * Called on the main method only, and only if the username and password are correct.
+     * Called on the main method only, and only if the username and password are
+     * correct.
      */
+    @SuppressWarnings("empty-statement")
     public void studentpresent() {
-        Login login = new Login();
+        login login = new login();
         login.myLogin(); // show frame
 
         while (login.isVisible()) ; // wait
@@ -97,10 +99,27 @@ public class registerClass {
 
         for (int i = 0; i < numStudents; i++) {
             // Input
-            String name = JOptionPane.showInputDialog("What is the name of the student?");
-            String surName = JOptionPane.showInputDialog("What is the student's sirname?");
-            int StudnetNo = Integer.parseInt(JOptionPane.showInputDialog("Enter student number?"));
-            String subject = JOptionPane.showInputDialog("What is the subject?");
+            JTextField txtName = new JTextField();
+            JTextField txtSurname = new JTextField();
+            JTextField txtStudentNum = new JTextField();
+            JTextField txtSubject = new JTextField();
+
+            JPanel pnl = new JPanel(new GridLayout(0, 2));
+            pnl.add(new JLabel("Name:"));
+            pnl.add(txtName);
+            pnl.add(new JLabel("Surname:"));
+            pnl.add(txtSurname);
+            pnl.add(new JLabel("Student Number:"));
+            pnl.add(txtStudentNum);
+            pnl.add(new JLabel("Subject:"));
+            pnl.add(txtSubject);
+
+            JOptionPane.showConfirmDialog(null, pnl, "Login", JOptionPane.OK_OPTION); // show input dialogue
+
+            String name = txtName.getText();
+            String surName = txtSurname.getText();
+            int StudnetNo = Integer.parseInt(txtStudentNum.getText());
+            String subject = txtSubject.getText();
 
             // Processing
             Student student = new Student(name, surName, StudnetNo, subject);
