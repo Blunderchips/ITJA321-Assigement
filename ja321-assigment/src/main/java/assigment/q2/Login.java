@@ -81,7 +81,7 @@ public class Login implements ActionListener {
     }
 
     public boolean isVisible() {
-        System.out.println(window.isVisible());
+        // System.out.println(window.isVisible());
         return window.isVisible();
     }
 }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *  Registration class. Created 31/07/2018.
- *  As per assigment specifications, class starts with lower case letter.
+ *  As per assignment specifications, class starts with lower case letter.
  *
  * @author Matthew Van der Bijl (xq93wv31)
  */
