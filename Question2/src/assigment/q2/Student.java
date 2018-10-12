@@ -2,6 +2,7 @@ package assigment.q2;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
@@ -74,7 +75,7 @@ public class Student {
             // close connection
             stmt.close();
             cnctn.close();
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace(System.err);
         }
     }

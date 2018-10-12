@@ -20,7 +20,7 @@ public class OverloadDemo {
     /**
      * Area of a rectangle.
      *
-     * @param length  length of a side
+     * @param length length of a side
      * @param breadth breadth of a side
      * @return area of the rectangle
      */

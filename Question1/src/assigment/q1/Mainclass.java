@@ -1,9 +1,7 @@
-package assigment.q2;
-
-import assigment.q1.OverloadDemo;
+package assigment.q1;
 
 /**
- * Main class for assigment question 1.1. Created 31/07/2018.
+ * Main class for assignment question 1.1. Created 31/07/2018.
  *
  * @author Matthew Van der Bijl (xq9x3wv31)
  */
